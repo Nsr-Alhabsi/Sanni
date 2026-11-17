@@ -1,0 +1,24 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+
+.vscode/
+.idea/
+*.swp
+
+.env
+.env.*
+*.pem
+*.key
+
+# Dependencies and build output (for when you add tooling)
+node_modules/
+dist/
+build/
+.cache/
+
+# Logs
+*.log
+npm-debug.log*
+
+*.zip
