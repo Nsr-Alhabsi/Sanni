@@ -1,0 +1,157 @@
+/* ============================================================
+   BASE — shared by index.html and app.html
+   Fonts · design tokens · reset · typography · buttons · header
+   ============================================================ */
+
+
+/* ---------- Fonts (bundled, works offline) ---------- */
+/* Arabic and Latin glyphs share one family ("Plex"); unicode-range picks the file. */
+@font-face {
+  font-family: "Plex"; font-weight: 400; font-display: swap;
+  src: url(../assets/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2) format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFF;
+}
+@font-face {
+  font-family: "Plex"; font-weight: 600; font-display: swap;
+  src: url(../assets/fonts/ibm-plex-sans-arabic-arabic-600-normal.woff2) format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFF;
+}
+@font-face {
+  font-family: "Plex"; font-weight: 700; font-display: swap;
+  src: url(../assets/fonts/ibm-plex-sans-arabic-arabic-700-normal.woff2) format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFF;
+}
+@font-face {
+  font-family: "Plex"; font-weight: 400; font-display: swap;
+  src: url(../assets/fonts/ibm-plex-sans-arabic-latin-400-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+2000-206F;
+}
+@font-face {
+  font-family: "Plex"; font-weight: 600; font-display: swap;
+  src: url(../assets/fonts/ibm-plex-sans-arabic-latin-600-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+2000-206F;
+}
+@font-face {
+  font-family: "Plex"; font-weight: 700; font-display: swap;
+  src: url(../assets/fonts/ibm-plex-sans-arabic-latin-700-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+2000-206F;
+}
+
+
+/* ---------- Design tokens (colours come from the Sanni logo) ---------- */
+:root {
+  --navy:   #0A1F4A;
+  --blue:   #306FD6;
+  --blue-d: #2257B5;   /* darker blue: hover + text on light backgrounds */
+  --sky:    #508DEA;
+
+  --bg:    #F6F7FB;
+  --card:  #fff;
+  --text:  #0A1F4A;
+  --muted: #5B6577;
+  --line:  #DCE2EE;
+
+  --r: 20px;                                   /* card radius */
+  --shadow: 0 10px 30px rgba(10, 31, 74, .08);
+  --max: 1160px;                               /* page width */
+}
+
+
+/* ---------- Reset & page ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;                    /* keeps anchors clear of the sticky header */
+}
+
+body {
+  font-family: "Plex", "Noto Sans Arabic", Tahoma, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a   { color: inherit; text-decoration: none; }
+
+:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; border-radius: 8px; }
+
+
+/* ---------- Layout & typography ---------- */
+.wrap { max-width: var(--max); margin-inline: auto; padding-inline: 24px; }
+section { padding-block: 88px; }
+
+h1, h2, h3 { line-height: 1.3; font-weight: 700; }
+h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 14px; }
+
+.lead    { color: var(--muted); font-size: 19px; max-width: 640px; }
+.eyebrow { display: inline-block; color: var(--blue-d); font-weight: 600; font-size: 15px; margin-bottom: 12px; letter-spacing: .02em; }
+.center  { text-align: center; }
+.center .lead { margin-inline: auto; }
+
+/* Round icon tile (used on both pages) */
+.ico {
+  width: 46px; height: 46px;
+  border-radius: 14px;
+  background: var(--navy); color: #fff;
+  display: grid; place-items: center;
+  font-size: 22px;
+  flex: none;
+}
+
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 26px;
+  border-radius: 14px;
+  font-weight: 600; font-size: 17px; font-family: inherit;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform .15s, background .15s, box-shadow .15s;
+}
+.btn-primary { background: var(--blue); color: #fff; box-shadow: 0 8px 20px rgba(48, 111, 214, .28); }
+.btn-primary:hover { background: var(--blue-d); transform: translateY(-2px); }
+.btn-ghost { border-color: var(--navy); color: var(--navy); background: transparent; }
+.btn-ghost:hover { background: var(--navy); color: #fff; }
+
+
+/* ---------- Header ---------- */
+header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(246, 247, 251, .88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px; gap: 16px;
+}
+.brand img { height: 46px; width: auto; }
+.nav-end { display: flex; align-items: center; gap: 12px; }
+
+.lang {
+  border: 2px solid var(--navy);
+  background: transparent; color: var(--navy);
+  padding: 6px 16px;
+  border-radius: 12px;
+  font: 600 15px inherit; font-family: inherit;
+  cursor: pointer;
+  transition: .15s;
+}
+.lang:hover { background: var(--navy); color: #fff; }
+
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  section { padding-block: 60px; }
+  body { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .card, .btn { transition: none; }
+}
