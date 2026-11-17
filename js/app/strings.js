@@ -1,0 +1,70 @@
+/* ============================================================
+   Sanni demo — all data is SAMPLE data. Nothing is sent anywhere:
+   saved items, requests and the profile live only in this browser.
+   ============================================================ */
+
+/* UI text, Arabic + English. Keys are used as t("key"); "{n}" is replaced by fmt(). */
+const UI = {
+  ar: {
+    about:"عن سنع", banner:"نسخة تجريبية — البيانات المعروضة أمثلة توضيحية وليست برامج حقيقية.",
+    t_explore:"استكشف", t_providers:"المقدّمون", t_saved:"المحفوظات", t_me:"ملفي",
+    ex_title:"اكتشف مهارتك", ex_sub:"ابحث عن ورشة أو دورة أو مدرّب، وصفِّ النتائج بما يناسبك.",
+    search_ph:"ابحث عن مهارة أو ورشة أو مدرب", clear:"مسح",
+    all:"الكل", f_gov:"المحافظة", f_type:"النوع", f_time:"الموعد", reset:"إعادة ضبط المرشحات",
+    g_all:"كل المحافظات", ty_all:"كل الأنواع", tm_all:"أي وقت", tm_week:"خلال 7 أيام", tm_month:"خلال شهر", tm_later:"لاحقًا",
+    results:"{n} برنامج", result1:"برنامج واحد",
+    no_res:"لا توجد نتائج مطابقة", no_res_d:"جرّب كلمات أخرى أو خفّف المرشحات.",
+    by:"من", free:"مجاني", omr:"ر.ع", seats_left:"{n} مقاعد متبقية", full:"اكتمل العدد",
+    save:"حفظ", saved:"محفوظ", unsave:"إزالة من المحفوظات",
+    d_when:"الموعد", d_where:"المكان", d_level:"المستوى", d_price:"السعر", d_seats:"المقاعد", d_dur:"المدة", d_provider:"مقدّم البرنامج",
+    request:"طلب التسجيل", requested:"تم إرسال الطلب", close:"إغلاق", back:"رجوع",
+    rq_title:"طلب التسجيل", rq_name:"الاسم", rq_contact:"البريد أو رقم الهاتف", rq_note:"ملاحظة للمقدّم (اختياري)",
+    rq_send:"إرسال الطلب", rq_hint:"عرض توضيحي: لا يُرسل شيء خارج هذا المتصفح.",
+    err_req:"هذا الحقل مطلوب.",
+    toast_req:"تم إرسال طلب تسجيلك. سيصلك رد من المقدّم.", toast_sv:"تمت الإضافة إلى المحفوظات", toast_un:"أُزيل من المحفوظات", toast_acc:"قبل المقدّم طلبك",
+    pr_title:"مقدّمو المهارات والجهات", pr_sub:"أفراد وجهات تدريبية يقدّمون برامجهم عبر سنع.",
+    pr_ind:"مقدّم مهارة", pr_org:"جهة تدريبية", pr_prog:"{n} برامج", pr_one:"برنامج واحد", pr_view:"عرض برامجهم",
+    prov_chip:"المقدّم: {n}",
+    sv_title:"المحفوظات", sv_sub:"البرامج التي حفظتها لتعود إليها.",
+    sv_empty:"لم تحفظ شيئًا بعد", sv_empty_d:"اضغط على القلب في أي برنامج ليظهر هنا.", sv_go:"استكشف البرامج",
+    me_title:"ملف المهارات", me_sub:"اجمع مهاراتك وما حضرته في مكان واحد.",
+    me_name:"اسمك", me_name_ph:"اكتب اسمك", me_hello:"مرحبًا",
+    sk_title:"مهاراتي", sk_name:"المهارة", sk_name_ph:"مثال: التصوير", sk_level:"المستوى", sk_add:"إضافة", sk_empty:"لم تضف مهارات بعد.",
+    lv_beginner:"مبتدئ", lv_intermediate:"متوسط", lv_advanced:"متقدّم", lv_all:"كل المستويات",
+    rq_list:"طلباتي", rq_empty:"لم ترسل طلبات تسجيل بعد.", st_pending:"قيد المراجعة", st_accepted:"مقبول",
+    sim:"محاكاة قبول المقدّم", sim_note:"عرض توضيحي: هكذا ستظهر حالة الطلب بعد رد المقدّم.",
+    at_title:"برامج حضرتها", at_empty:"ستظهر هنا البرامج التي يقبل المقدّم تسجيلك فيها.",
+    reset_all:"مسح بيانات التجربة"
+  },
+  en: {
+    about:"About Sanni", banner:"Demo version — everything shown is illustrative sample data, not real programmes.",
+    t_explore:"Explore", t_providers:"Providers", t_saved:"Saved", t_me:"My profile",
+    ex_title:"Discover your skill", ex_sub:"Search for a workshop, course or trainer, and filter to what suits you.",
+    search_ph:"Search for a skill, workshop or trainer", clear:"Clear",
+    all:"All", f_gov:"Governorate", f_type:"Type", f_time:"When", reset:"Reset filters",
+    g_all:"All governorates", ty_all:"All types", tm_all:"Any time", tm_week:"Within 7 days", tm_month:"Within a month", tm_later:"Later",
+    results:"{n} programmes", result1:"1 programme",
+    no_res:"No matching results", no_res_d:"Try other words or loosen the filters.",
+    by:"by", free:"Free", omr:"OMR", seats_left:"{n} seats left", full:"Full",
+    save:"Save", saved:"Saved", unsave:"Remove from saved",
+    d_when:"When", d_where:"Where", d_level:"Level", d_price:"Price", d_seats:"Seats", d_dur:"Duration", d_provider:"Provider",
+    request:"Request to register", requested:"Request sent", close:"Close", back:"Back",
+    rq_title:"Registration request", rq_name:"Name", rq_contact:"Email or phone", rq_note:"Note to the provider (optional)",
+    rq_send:"Send request", rq_hint:"Demo only: nothing leaves this browser.",
+    err_req:"This field is required.",
+    toast_req:"Your registration request was sent. The provider will reply.", toast_sv:"Added to saved", toast_un:"Removed from saved", toast_acc:"The provider accepted your request",
+    pr_title:"Skill providers & organisations", pr_sub:"Individuals and training organisations offering programmes on Sanni.",
+    pr_ind:"Skill provider", pr_org:"Training organisation", pr_prog:"{n} programmes", pr_one:"1 programme", pr_view:"View programmes",
+    prov_chip:"Provider: {n}",
+    sv_title:"Saved", sv_sub:"Programmes you saved to come back to.",
+    sv_empty:"Nothing saved yet", sv_empty_d:"Tap the heart on any programme and it will show up here.", sv_go:"Explore programmes",
+    me_title:"Skills profile", me_sub:"Gather your skills and what you attended in one place.",
+    me_name:"Your name", me_name_ph:"Type your name", me_hello:"Hello",
+    sk_title:"My skills", sk_name:"Skill", sk_name_ph:"e.g. Photography", sk_level:"Level", sk_add:"Add", sk_empty:"No skills added yet.",
+    lv_beginner:"Beginner", lv_intermediate:"Intermediate", lv_advanced:"Advanced", lv_all:"All levels",
+    rq_list:"My requests", rq_empty:"You haven't sent any registration requests yet.", st_pending:"Under review", st_accepted:"Accepted",
+    sim:"Simulate provider acceptance", sim_note:"Demo only: this is how a request status will look after the provider replies.",
+    at_title:"Programmes attended", at_empty:"Programmes where a provider accepts your registration will appear here.",
+    reset_all:"Clear demo data"
+  }
+};
